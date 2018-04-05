@@ -1,21 +1,29 @@
-# To Get This Running...
+# Disclaimer
+This is NOT production code!
 
-Get [NW.js](https://nwjs.io) by clicking one of the blue buttons at the top.
-I use the **SDK**.
+This only represents about a day's worth of effort. There are no tests, and I was not able to test this on iOS or Mac. THIS IS ONLY THE HAPPY PATH. Errors and corner cases are not handled, and there is only the bare minimum in terms of user input verification.
 
-## To start app with appropriate flags:
-CD to your NW.js app and run:
+The intent here is to quickly put together a functional prototype that stake holders can actually see and use. It's supposed to be a concrete discussion piece that elicits feedback, which would then be used to build future iterations of the application.
 
-`~/nwjs-sdk-v0.27.4-linux-x64/nw --enable-transparent-visuals --disable-gpu --disable-gpu-compositing --force-cpu-draw .`
+# Possible Future Improvements
+* A LOT of work to be done on parsing & presenting user info, particular for capitalizing proper nouns in location/address info.
+* The same goes for formatting dates.
+* Need to do more to handle network latency (Turn this into a progressive web app).
+* The app starts to bog down when requesting ~1000 users. The API is set up for paging, so that would be an obvious way to manage this.
+* Tweak animations (especially speeds)
+* Optimize for specific phones, tabs, etc. (based on analytics usage metrics)
 
-Where `~/The/path/to/your/NW.js/nw file` is followed by a bunch of `--flags` and a `.`
+# Assumptions
+* This should be functional (maybe not beautiful) on mobile devices
+* Vanilla ES via TypeScript.
+* No frameworks. This is what I can do with the help of a few tools (listed below).
+* The Gulp file is just to automate compiling TypeScript.
 
-##To test with aws instance
-YOU MUST copy valor-dev.pem into the directory of nwjs-canvas as `key,pem`
+# Tools
+* animate.css
+* FontAwesome
+* Favicon Generator
+* flag-icon-css
 
-
-## From main window console:
-
-`window.open('chrome://inspect/#apps')`
-
-This lets you inspect nested windows and `<webview>` tags.
+# Original Challenge
+Create a small Javascript application that pulls data from an api (https://randomuser.me/) and displays a summary of 3 or more users at a time. You should have the ability to select a user and have it show more detail about that user either in a modal or a new page. In addition the application should also have an option to show a new set of users without reloading the page ( generate / refresh button or similar ).

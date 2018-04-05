@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>PigKnows Coding Challenge</title>
+        <title>Coding Challenge</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 				<meta name="msapplication-TileColor" content="#da532c">
@@ -24,9 +24,40 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-		<div class="">
+		<header>
+			<div class="headWrap fadeIn animated">
+				<div class="snout mar15">
+					<img
+						src="./assets/img/pig-nose_1f43d.png"
+						alt="a picture of a pig snout"
+					>
+				</div>
 
-		</div>
+				<div class="pad15 mar15 numWrap">
+					<label for="userNum">Number of Users:</label>
+					<input
+						id="userNum"
+						type="number"
+						placeholder="3?"
+						min="0"
+						value="3"
+					>
+				</div>
+
+				<div class="numBtnWrap mar15">
+					<button
+						class="numBtn"
+						onclick="getUsers()"
+						title="Click to update user list"
+					>
+						Go
+					</button>
+				</div>
+			</div>
+		</header>
+
+		<!-- User List -->
+		<div id="users"></div>
 
 	</body>
 
