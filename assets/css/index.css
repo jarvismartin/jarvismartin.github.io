@@ -166,7 +166,6 @@ summary img {
 .subcardWrap {
   padding-top: 50px;
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
 }
 .subcard {
@@ -180,7 +179,7 @@ summary img {
 /* END OF USERS SECTION */
 
 @media screen and (max-width: 600px) {
-  .headWrap, .numWrap {
+  .headWrap, .numWrap, .subcardWrap {
     flex-direction: column;
   }
 }
