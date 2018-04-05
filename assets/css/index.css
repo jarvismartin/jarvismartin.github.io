@@ -142,6 +142,8 @@ details[open] {
   position: absolute;
   width: 100%;
   height: 100%;
+  margin: 5px 0 0 0;
+  overflow-y: auto;
 }
 summary {
   display: flex;
@@ -179,7 +181,16 @@ summary img {
 /* END OF USERS SECTION */
 
 @media screen and (max-width: 600px) {
-  .headWrap, .numWrap, .subcardWrap {
+  .headWrap, .subcardWrap {
     flex-direction: column;
   }
+  .numWrap, .numBtnWrap { margin: 5px; }
+  .numBtn {
+    background-color: #2196F3;
+    color: white;
+  }
+  #userNum { width: 5rem; }
+  .snout { display: none; }
+  .card { width: 100%; }
+  .subcardWrap { padding-top: 10px; }
 }

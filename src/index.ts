@@ -29,7 +29,7 @@ let addUser = (user: any) => {
         </div>
       </div>
     </summary>
-    <div class="flex subcardWrap">
+    <div class="subcardWrap">
       <div class="mar15 pad15 subcard">
         <h2 style="text-align: center;"> Contact Info </h2>
         <div class="pad15 flex">
