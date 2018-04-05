@@ -5,6 +5,8 @@ This only represents about a day's worth of effort. There are no tests, and I wa
 
 The intent here is to quickly put together a functional prototype that stake holders can actually see and use. It's supposed to be a concrete discussion piece that elicits feedback, which would then be used to build future iterations of the application.
 
+I haven't squashed any commits, or done any sort of clean-up.
+
 # Possible Future Improvements
 * A LOT of work to be done on parsing & presenting user info, particular for capitalizing proper nouns in location/address info.
 * The same goes for formatting dates.
