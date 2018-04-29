@@ -1,0 +1,62 @@
+var _user$project$Models$initialModel = {users: _krisajenkins$remotedata$RemoteData$Loading};
+var _user$project$Models$Model = function (a) {
+	return {users: a};
+};
+var _user$project$Models$Name = F3(
+	function (a, b, c) {
+		return {title: a, first: b, last: c};
+	});
+var _user$project$Models$Location = F4(
+	function (a, b, c, d) {
+		return {street: a, city: b, state: c, postcode: d};
+	});
+var _user$project$Models$Login = F6(
+	function (a, b, c, d, e, f) {
+		return {username: a, password: b, salt: c, md5: d, sha1: e, sha256: f};
+	});
+var _user$project$Models$Id = F2(
+	function (a, b) {
+		return {name: a, value: b};
+	});
+var _user$project$Models$Picture = F3(
+	function (a, b, c) {
+		return {large: a, medium: b, thumbnail: c};
+	});
+var _user$project$Models$User = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return function (k) {
+											return function (l) {
+												return {gender: a, name: b, location: c, email: d, login: e, dob: f, registered: g, phone: h, cell: i, id: j, picture: k, nat: l};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+var _user$project$Models$Info = F4(
+	function (a, b, c, d) {
+		return {seed: a, results: b, page: c, version: d};
+	});
+var _user$project$Models$Res = F2(
+	function (a, b) {
+		return {results: a, info: b};
+	});
+var _user$project$Models$NotFoundRoute = {ctor: 'NotFoundRoute'};
+var _user$project$Models$UserRoute = function (a) {
+	return {ctor: 'UserRoute', _0: a};
+};
+var _user$project$Models$UsersRoute = {ctor: 'UsersRoute'};

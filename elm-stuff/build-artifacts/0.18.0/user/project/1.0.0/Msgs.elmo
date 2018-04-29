@@ -1,0 +1,3 @@
+var _user$project$Msgs$OnFetchUsers = function (a) {
+	return {ctor: 'OnFetchUsers', _0: a};
+};

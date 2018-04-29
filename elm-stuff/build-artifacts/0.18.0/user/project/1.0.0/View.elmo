@@ -1,0 +1,13 @@
+var _user$project$View$page = function (model) {
+	return _user$project$Users_List$view(model.users);
+};
+var _user$project$View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _user$project$View$page(model),
+			_1: {ctor: '[]'}
+		});
+};
