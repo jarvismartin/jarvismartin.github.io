@@ -8,7 +8,7 @@ The intent here is to quickly put together a functional prototype that stake hol
 I haven't squashed any commits, or done any sort of clean-up.
 
 # Possible Future Improvements
-* A LOT of work to be done on parsing & presenting user info, particular for capitalizing proper nouns in location/address info.
+* A LOT of work to be done on parsing & presenting user info, especially capitalizing proper nouns in location/address info.
 * The same goes for formatting dates.
 * Need to do more to handle network latency (Turn this into a progressive web app).
 * The app starts to bog down when requesting ~1000 users. The API is set up for paging, so that would be an obvious way to manage this.
