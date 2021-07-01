@@ -92,8 +92,14 @@ proc findSolutions(n: int) =
     ## Assign a queen to one of the top row spaces
     board[n - 1].queen = true
 
+    ## Handle n is 1
+    var validity = false
+    if nValue == 1:
+      validity = true
+
     ## Add board to solutions
-    let newSoln = (board: board, valid: false)
+    let newSoln = (board: board, valid: validity)
+
     solutions.add(newSoln)
     ## echo "solutions: ", $solutions
 
