@@ -3292,9 +3292,16 @@ function find_solutions_10865262(n_10865264) {
             F.line = 93;
             board_10865293[chckIndx(subInt(n_10865292, 1), 0, (board_10865293 != null ? board_10865293.length : 0)+0-1)-0].Field3 = true;
             F.line = 96;
-            var new_soln_10865297 = {Field0: nimCopy(null, board_10865293, NTI10831004), Field1: false};
-            F.line = 97;
-            var Tmp4 = nimCopy(null, new_soln_10865297, NTI10831008);
+            var validity_10865294 = false;
+            if ((n_value_10831033[0] == 1)) {
+            F.line = 98;
+            validity_10865294 = true;
+            }
+            
+            F.line = 101;
+            var new_soln_10865298 = {Field0: nimCopy(null, board_10865293, NTI10831004), Field1: validity_10865294};
+            F.line = 103;
+            var Tmp4 = nimCopy(null, new_soln_10865298, NTI10831008);
             if (solutions_10831050[0] != null) { solutions_10831050[0].push(Tmp4); } else { solutions_10831050[0] = [Tmp4]; };
             F.line = 80;
             res_10905542 = addInt(res_10905542, 1);
@@ -3302,9 +3309,9 @@ function find_solutions_10865262(n_10865264) {
       } while(false);
     } while(false);
     L5: do {
-      F.line = 101;
+      F.line = 107;
       var index_10875244 = 0;
-      F.line = 101;
+      F.line = 107;
       var solution_10875245 = {Field0: null, Field1: false};
       F.line = 117;
       var i_10905563 = 0;
@@ -3314,36 +3321,36 @@ function find_solutions_10865262(n_10865264) {
         F.line = 119;
           L7: while (true) {
           if (!(i_10905563 < l_10905564)) break L7;
-            F.line = 101;
+            F.line = 107;
             index_10875244 = i_10905563;
             F.line = 120;
             nimCopy(solution_10875245, solutions_10831050[0][chckIndx(i_10905563, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0], NTI10831008);
-            F.line = 102;
+            F.line = 108;
             var board_10875246 = nimCopy(null, solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0, NTI10831004);
-            F.line = 109;
+            F.line = 115;
             var tries_10875248 = 0;
-            F.line = 110;
+            F.line = 116;
             var queens_10875250 = 1;
             L8: do {
-              F.line = 112;
+              F.line = 118;
                 L9: while (true) {
                 if (!(tries_10875248 <= subInt((board_10875246 != null ? board_10875246.length : 0), 1))) break L9;
-                  F.line = 113;
+                  F.line = 119;
                   rawEcho(makeNimstrLit("while tries "), cstrToNimstr((tries_10875248)+""));
-                  F.line = 114;
+                  F.line = 120;
                   rawEcho(makeNimstrLit("queens: "), cstrToNimstr((queens_10875250)+""));
-                  F.line = 117;
+                  F.line = 123;
                   var queen_added_10875269 = {Field0: 0, Field1: 0};
-                  F.line = 118;
+                  F.line = 124;
                   var q_loc_10875275 = {Field0: 0, Field1: 0};
                   L10: do {
-                    F.line = 121;
+                    F.line = 127;
                     var sq_i_10875285 = 0;
-                    F.line = 121;
+                    F.line = 127;
                     var sq_10875286 = {Field0: 0, Field1: 0, Field2: false, Field3: false, Field4: false, Field5: 0};
                     F.line = 115;
                     var colontmp__10905552 = null;
-                    F.line = 121;
+                    F.line = 127;
                     colontmp__10905552 = solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0;
                     F.line = 117;
                     var i_10905554 = 0;
@@ -3353,16 +3360,16 @@ function find_solutions_10865262(n_10865264) {
                       F.line = 119;
                         L12: while (true) {
                         if (!(i_10905554 < l_10905555)) break L12;
-                          F.line = 121;
+                          F.line = 127;
                           sq_i_10875285 = i_10905554;
                           F.line = 120;
                           nimCopy(sq_10875286, colontmp__10905552[chckIndx(i_10905554, 0, (colontmp__10905552 != null ? colontmp__10905552.length : 0)+0-1)-0], NTI10831002);
                           if ((sq_10875286.Field3 == true)) {
-                          F.line = 123;
+                          F.line = 129;
                           var colontmp__10905550 = sq_10875286.Field0;
-                          F.line = 123;
+                          F.line = 129;
                           var colontmp__10905551 = sq_10875286.Field1;
-                          F.line = 123;
+                          F.line = 129;
                           nimCopy(q_loc_10875275, {Field0: colontmp__10905550, Field1: colontmp__10905551}, NTI10875270);
                           }
                           
@@ -3376,16 +3383,16 @@ function find_solutions_10865262(n_10865264) {
                         }
                     } while(false);
                   } while(false);
-                  F.line = 126;
+                  F.line = 132;
                   var diagonals_10875290 = get_diagonals_10850247(board_10875246, q_loc_10875275);
                   L13: do {
-                    F.line = 128;
+                    F.line = 134;
                     var si_10875300 = 0;
-                    F.line = 128;
+                    F.line = 134;
                     var square_10875301 = {Field0: 0, Field1: 0, Field2: false, Field3: false, Field4: false, Field5: 0};
                     F.line = 115;
                     var colontmp__10905558 = null;
-                    F.line = 128;
+                    F.line = 134;
                     colontmp__10905558 = solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0;
                     F.line = 117;
                     var i_10905559 = 0;
@@ -3395,14 +3402,14 @@ function find_solutions_10865262(n_10865264) {
                       F.line = 119;
                         L15: while (true) {
                         if (!(i_10905559 < l_10905560)) break L15;
-                          F.line = 128;
+                          F.line = 134;
                           si_10875300 = i_10905559;
                           F.line = 120;
                           nimCopy(square_10875301, colontmp__10905558[chckIndx(i_10905559, 0, (colontmp__10905558 != null ? colontmp__10905558.length : 0)+0-1)-0], NTI10831002);
                           if ((square_10875301.Field4 == false)) {
-                          F.line = 131;
+                          F.line = 137;
                           solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0[chckIndx(si_10875300, 0, (solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0 != null ? solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0.length : 0)+0-1)-0].Field4 = cannot_be_queen_10865241(addInt(si_10875300, 1), square_10875301, q_loc_10875275, diagonals_10875290);
-                          F.line = 132;
+                          F.line = 138;
                           solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0[chckIndx(si_10875300, 0, (solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0 != null ? solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field0.length : 0)+0-1)-0].Field5 = queens_10875250;
                           }
                           
@@ -3416,26 +3423,26 @@ function find_solutions_10865262(n_10865264) {
                         }
                     } while(false);
                   } while(false);
-                  F.line = 135;
+                  F.line = 141;
                   nimCopy(queen_added_10875269, add_queen_10840066(index_10875244, addInt(queens_10875250, 1)), NTI10875264);
                   if ((queen_added_10875269.Field0 == 0)) {
-                  F.line = 137;
+                  F.line = 143;
                   break L8;
                   }
                   
                   if (!((queen_added_10875269.Field0 == 0))) {
-                  F.line = 140;
+                  F.line = 146;
                   queens_10875250 = addInt(queens_10875250, 1);
-                  F.line = 141;
+                  F.line = 147;
                   nimCopy(q_loc_10875275, queen_added_10875269, NTI10875270);
                   if ((queens_10875250 == n_value_10831033[0])) {
-                  F.line = 144;
+                  F.line = 150;
                   solutions_10831050[0][chckIndx(index_10875244, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0].Field1 = true;
                   }
                   
                   }
                   
-                  F.line = 147;
+                  F.line = 153;
                   tries_10875248 = addInt(tries_10875248, 1);
                 }
             } while(false);
@@ -3458,58 +3465,58 @@ function square_div_10880054(s_10880056) {
 
   var F={procname:"index.squareDiv",prev:framePtr,filename:"index.nim",line:0};
   framePtr = F;
-    F.line = 154;
+    F.line = 160;
     var class_10880058 = makeNimstrLit("square");
     if (s_10880056.Field2) {
-    F.line = 156;
+    F.line = 162;
     if (class_10880058 != null) { class_10880058 = (class_10880058).concat(makeNimstrLit(" black")); } else { class_10880058 = makeNimstrLit(" black"); };
     }
     
     if (s_10880056.Field4) {
-    F.line = 158;
+    F.line = 164;
     if (class_10880058 != null) { class_10880058 = (class_10880058).concat(makeNimstrLit(" x")); } else { class_10880058 = makeNimstrLit(" x"); };
     }
     
-    F.line = 160;
+    F.line = 166;
     if (class_10880058 != null) { class_10880058 = (class_10880058).concat((makeNimstrLit(" group-") || []).concat(cstrToNimstr((s_10880056.Field5)+"") || [])); } else { class_10880058 = (makeNimstrLit(" group-") || []).concat(cstrToNimstr((s_10880056.Field5)+"") || []).slice(); };
-    F.line = 162;
-    F.line = 162;
+    F.line = 168;
+    F.line = 168;
     var tmp_10880095 = tree_9830445(43, []);
     if (s_10880056.Field3) {
-    F.line = 164;
+    F.line = 170;
     var tmp_10880096 = tree_9830445(43, []);
-    F.line = 164;
+    F.line = 170;
     tmp_10880096.class = toJSStr(class_10880058);
-    F.line = 166;
+    F.line = 172;
     var tmp_10880102 = tree_9830445(61, []);
-    F.line = 166;
+    F.line = 172;
     tmp_10880102.class = "fas fa-chess-queen";
-    F.line = 166;
+    F.line = 172;
     add_9820072(tmp_10880096, tmp_10880102);
-    F.line = 166;
+    F.line = 172;
     add_9820072(tmp_10880095, tmp_10880096);
     }
     else {
       if (s_10880056.Field4) {
-      F.line = 169;
+      F.line = 175;
       var tmp_10880103 = tree_9830445(43, []);
-      F.line = 169;
+      F.line = 175;
       tmp_10880103.class = toJSStr(class_10880058);
-      F.line = 171;
+      F.line = 177;
       var tmp_10880104 = tree_9830445(61, []);
-      F.line = 171;
+      F.line = 177;
       tmp_10880104.class = "fas fa-times";
-      F.line = 171;
+      F.line = 177;
       add_9820072(tmp_10880103, tmp_10880104);
-      F.line = 171;
+      F.line = 177;
       add_9820072(tmp_10880095, tmp_10880103);
       }
       else {
-        F.line = 173;
+        F.line = 179;
         var tmp_10880105 = tree_9830445(43, []);
-        F.line = 173;
+        F.line = 179;
         tmp_10880105.class = toJSStr(class_10880058);
-        F.line = 173;
+        F.line = 179;
         add_9820072(tmp_10880095, tmp_10880105);
       }
       
@@ -3525,9 +3532,9 @@ function create_dom_10885053() {
     function HEX3Aanonymous_10890058(ev_10890060, n_10890061) {
       var F={procname:"createDom.:anonymous",prev:framePtr,filename:"index.nim",line:0};
       framePtr = F;
-        F.line = 196;
+        F.line = 202;
         n_value_10831033[0] = parseInt(value_9735126(n_10890061), 10);
-        F.line = 197;
+        F.line = 203;
         find_solutions_10865262(n_value_10831033[0]);
       framePtr = F.prev;
 
@@ -3538,81 +3545,81 @@ function create_dom_10885053() {
 
   var F={procname:"index.createDom",prev:framePtr,filename:"index.nim",line:0};
   framePtr = F;
-    F.line = 176;
-    F.line = 176;
+    F.line = 182;
+    F.line = 182;
     var tmp_10885056 = tree_9830445(43, []);
-    F.line = 177;
-    var tmp_10885057 = tree_9830445(17, []);
-    F.line = 177;
-    tmp_10885057.class = "section";
-    F.line = 178;
-    var tmp_10885058 = tree_9830445(43, []);
-    F.line = 178;
-    tmp_10885058.class = "container";
-    F.line = 179;
-    var tmp_10885059 = tree_9830445(21, []);
-    F.line = 179;
-    tmp_10885059.class = "title";
-    F.line = 180;
-    add_9820072(tmp_10885059, text_9830548(makeNimstrLit("Welcome to a Work in Progress")));
-    F.line = 180;
-    add_9820072(tmp_10885058, tmp_10885059);
-    F.line = 181;
-    var tmp_10885060 = tree_9830445(31, []);
-    F.line = 182;
-    add_9820072(tmp_10885060, text_9830548(makeNimstrLit("The\xC2\xA0n-queens\xC2\xA0puzzle is the problem of placing\xC2\xA0n\xC2\xA0queens on an\xC2\xA0n x n\xC2\xA0chessboard such that no two queens attack each other.")));
-    F.line = 182;
-    add_9820072(tmp_10885058, tmp_10885060);
     F.line = 183;
+    var tmp_10885057 = tree_9830445(17, []);
+    F.line = 183;
+    tmp_10885057.class = "section";
+    F.line = 184;
+    var tmp_10885058 = tree_9830445(43, []);
+    F.line = 184;
+    tmp_10885058.class = "container";
+    F.line = 185;
+    var tmp_10885059 = tree_9830445(21, []);
+    F.line = 185;
+    tmp_10885059.class = "title";
+    F.line = 186;
+    add_9820072(tmp_10885059, text_9830548(makeNimstrLit("Welcome to a Work in Progress")));
+    F.line = 186;
+    add_9820072(tmp_10885058, tmp_10885059);
+    F.line = 187;
+    var tmp_10885060 = tree_9830445(31, []);
+    F.line = 188;
+    add_9820072(tmp_10885060, text_9830548(makeNimstrLit("The\xC2\xA0n-queens\xC2\xA0puzzle is the problem of placing\xC2\xA0n\xC2\xA0queens on an\xC2\xA0n x n\xC2\xA0chessboard such that no two queens attack each other.")));
+    F.line = 188;
+    add_9820072(tmp_10885058, tmp_10885060);
+    F.line = 189;
     var tmp_10885061 = tree_9830445(31, []);
-    F.line = 184;
+    F.line = 190;
     add_9820072(tmp_10885061, text_9830548(makeNimstrLit("Given an integer\xC2\xA0n, such that 1 <= n <= 9, return\xC2\xA0all distinct solutions to the\xC2\xA0n-queens puzzle. You may return the answer in\xC2\xA0any order. Each solution contains a distinct board configuration of the n-queens\' placement.")));
-    F.line = 184;
+    F.line = 190;
     add_9820072(tmp_10885058, tmp_10885061);
-    F.line = 186;
+    F.line = 192;
     var tmp_10885062 = tree_9830445(17, []);
-    F.line = 186;
+    F.line = 192;
     tmp_10885062.class = "section";
-    F.line = 187;
-    var tmp_10885063 = tree_9830445(43, []);
-    F.line = 187;
-    tmp_10885063.class = "level";
-    F.line = 188;
-    var tmp_10885064 = tree_9830445(43, []);
-    F.line = 188;
-    tmp_10885064.class = "level-left";
-    F.line = 189;
-    var tmp_10885065 = tree_9830445(43, []);
-    F.line = 189;
-    tmp_10885065.class = "level-item";
-    F.line = 190;
-    var tmp_10885066 = tree_9830445(43, []);
-    F.line = 190;
-    add_9820072(tmp_10885066, text_9830548(makeNimstrLit("Please choose a value for n:")));
-    F.line = 190;
-    add_9820072(tmp_10885065, tmp_10885066);
-    F.line = 190;
-    add_9820072(tmp_10885064, tmp_10885065);
-    F.line = 191;
-    var tmp_10885067 = tree_9830445(43, []);
-    F.line = 191;
-    tmp_10885067.class = "level-item";
-    F.line = 192;
-    var tmp_10885068 = tree_9830445(43, []);
-    F.line = 192;
-    tmp_10885068.class = "select";
     F.line = 193;
-    var tmp_10885069 = tree_9830445(165, []);
+    var tmp_10885063 = tree_9830445(43, []);
+    F.line = 193;
+    tmp_10885063.class = "level";
     F.line = 194;
+    var tmp_10885064 = tree_9830445(43, []);
+    F.line = 194;
+    tmp_10885064.class = "level-left";
+    F.line = 195;
+    var tmp_10885065 = tree_9830445(43, []);
+    F.line = 195;
+    tmp_10885065.class = "level-item";
+    F.line = 196;
+    var tmp_10885066 = tree_9830445(43, []);
+    F.line = 196;
+    add_9820072(tmp_10885066, text_9830548(makeNimstrLit("Please choose a value for n:")));
+    F.line = 196;
+    add_9820072(tmp_10885065, tmp_10885066);
+    F.line = 196;
+    add_9820072(tmp_10885064, tmp_10885065);
+    F.line = 197;
+    var tmp_10885067 = tree_9830445(43, []);
+    F.line = 197;
+    tmp_10885067.class = "level-item";
+    F.line = 198;
+    var tmp_10885068 = tree_9830445(43, []);
+    F.line = 198;
+    tmp_10885068.class = "select";
+    F.line = 199;
+    var tmp_10885069 = tree_9830445(165, []);
+    F.line = 200;
     add_event_handler_10750300(tmp_10885069, 0, HEX3Aanonymous_10890058, kxi_10187285[0]);
-    F.line = 198;
+    F.line = 204;
     var tmp_10885070 = tree_9830445(168, []);
-    F.line = 198;
+    F.line = 204;
     add_9820072(tmp_10885070, text_9830548(makeNimstrLit("Choose One")));
-    F.line = 198;
+    F.line = 204;
     add_9820072(tmp_10885069, tmp_10885070);
     L1: do {
-      F.line = 199;
+      F.line = 205;
       var n_10890088 = 0;
       F.line = 77;
       var res_10905504 = 1;
@@ -3620,38 +3627,38 @@ function create_dom_10885053() {
         F.line = 78;
           L3: while (true) {
           if (!(res_10905504 <= 9)) break L3;
-            F.line = 199;
+            F.line = 205;
             n_10890088 = res_10905504;
-            F.line = 200;
+            F.line = 206;
             var tmp_10885071 = tree_9830445(168, []);
-            F.line = 200;
+            F.line = 206;
             add_9820072(tmp_10885071, text_9830548(cstrToNimstr((n_10890088)+"")));
-            F.line = 200;
+            F.line = 206;
             add_9820072(tmp_10885069, tmp_10885071);
             F.line = 80;
             res_10905504 = addInt(res_10905504, 1);
           }
       } while(false);
     } while(false);
-    F.line = 200;
+    F.line = 206;
     add_9820072(tmp_10885068, tmp_10885069);
-    F.line = 200;
+    F.line = 206;
     add_9820072(tmp_10885067, tmp_10885068);
-    F.line = 200;
+    F.line = 206;
     add_9820072(tmp_10885064, tmp_10885067);
-    F.line = 200;
+    F.line = 206;
     add_9820072(tmp_10885063, tmp_10885064);
-    F.line = 200;
+    F.line = 206;
     add_9820072(tmp_10885062, tmp_10885063);
-    F.line = 200;
+    F.line = 206;
     add_9820072(tmp_10885058, tmp_10885062);
-    F.line = 202;
+    F.line = 208;
     var tmp_10885072 = tree_9830445(17, []);
-    F.line = 202;
+    F.line = 208;
     tmp_10885072.class = "section boards";
     if ((0 < n_value_10831033[0])) {
     L4: do {
-      F.line = 204;
+      F.line = 210;
       var s_10905214 = {Field0: null, Field1: false};
       F.line = 184;
       var i_10905531 = 0;
@@ -3661,14 +3668,14 @@ function create_dom_10885053() {
         F.line = 186;
           L6: while (true) {
           if (!(i_10905531 < l_10905532)) break L6;
-            F.line = 204;
+            F.line = 210;
             nimCopy(s_10905214, solutions_10831050[0][chckIndx(i_10905531, 0, (solutions_10831050[0] != null ? solutions_10831050[0].length : 0)+0-1)-0], NTI10831008);
-            F.line = 205;
+            F.line = 211;
             var tmp_10885073 = tree_9830445(43, []);
-            F.line = 205;
+            F.line = 211;
             tmp_10885073.class = "board";
             L7: do {
-              F.line = 206;
+              F.line = 212;
               var r_10905227 = 0;
               F.line = 77;
               var res_10905522 = 1;
@@ -3676,22 +3683,22 @@ function create_dom_10885053() {
                 F.line = 78;
                   L9: while (true) {
                   if (!(res_10905522 <= n_value_10831033[0])) break L9;
-                    F.line = 206;
+                    F.line = 212;
                     r_10905227 = res_10905522;
-                    F.line = 208;
+                    F.line = 214;
                     var tmp_10885074 = tree_9830445(43, []);
-                    F.line = 208;
+                    F.line = 214;
                     tmp_10885074.class = "flex";
                     L10: do {
-                      F.line = 210;
+                      F.line = 216;
                       var i_10905237 = 0;
                       F.line = 66;
                       var colontmp__10905515 = 0;
                       F.line = 66;
                       var colontmp__10905516 = 0;
-                      F.line = 210;
+                      F.line = 216;
                       colontmp__10905515 = subInt(mulInt(r_10905227, n_value_10831033[0]), n_value_10831033[0]);
-                      F.line = 210;
+                      F.line = 216;
                       colontmp__10905516 = subInt(mulInt(r_10905227, n_value_10831033[0]), 1);
                       F.line = 77;
                       var res_10905517 = colontmp__10905515;
@@ -3699,46 +3706,46 @@ function create_dom_10885053() {
                         F.line = 78;
                           L12: while (true) {
                           if (!(res_10905517 <= colontmp__10905516)) break L12;
-                            F.line = 210;
+                            F.line = 216;
                             i_10905237 = res_10905517;
-                            F.line = 213;
+                            F.line = 219;
                             add_9820072(tmp_10885074, square_div_10880054(s_10905214.Field0[chckIndx(i_10905237, 0, (s_10905214.Field0 != null ? s_10905214.Field0.length : 0)+0-1)-0]));
                             F.line = 80;
                             res_10905517 = addInt(res_10905517, 1);
                           }
                       } while(false);
                     } while(false);
-                    F.line = 213;
+                    F.line = 219;
                     add_9820072(tmp_10885073, tmp_10885074);
                     F.line = 80;
                     res_10905522 = addInt(res_10905522, 1);
                   }
               } while(false);
             } while(false);
-            F.line = 215;
+            F.line = 221;
             var tmp_10885075 = tree_9830445(43, []);
-            F.line = 215;
+            F.line = 221;
             tmp_10885075.class = "valid";
             if (s_10905214.Field1) {
-            F.line = 217;
+            F.line = 223;
             var tmp_10885076 = tree_9830445(61, []);
-            F.line = 217;
+            F.line = 223;
             tmp_10885076.class = "fas fa-check has-text-success";
-            F.line = 217;
+            F.line = 223;
             add_9820072(tmp_10885075, tmp_10885076);
             }
             else {
-              F.line = 219;
+              F.line = 225;
               var tmp_10885077 = tree_9830445(61, []);
-              F.line = 219;
+              F.line = 225;
               tmp_10885077.class = "fas fa-times has-text-danger";
-              F.line = 219;
+              F.line = 225;
               add_9820072(tmp_10885075, tmp_10885077);
             }
             
-            F.line = 219;
+            F.line = 225;
             add_9820072(tmp_10885073, tmp_10885075);
-            F.line = 219;
+            F.line = 225;
             add_9820072(tmp_10885072, tmp_10885073);
             F.line = 188;
             i_10905531 = addInt(i_10905531, 1);
@@ -3752,19 +3759,19 @@ function create_dom_10885053() {
     } while(false);
     }
     else {
-      F.line = 222;
+      F.line = 228;
       var tmp_10885078 = tree_9830445(43, []);
-      F.line = 222;
+      F.line = 228;
       add_9820072(tmp_10885078, text_9830548([]));
-      F.line = 222;
+      F.line = 228;
       add_9820072(tmp_10885072, tmp_10885078);
     }
     
-    F.line = 222;
+    F.line = 228;
     add_9820072(tmp_10885058, tmp_10885072);
-    F.line = 222;
+    F.line = 228;
     add_9820072(tmp_10885057, tmp_10885058);
-    F.line = 222;
+    F.line = 228;
     add_9820072(tmp_10885056, tmp_10885057);
     result_10885055 = tmp_10885056;
   framePtr = F.prev;
