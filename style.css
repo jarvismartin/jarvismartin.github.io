@@ -50,3 +50,39 @@ img[src="./img/x.svg"],
   height: 100px;
   font-size: 3rem;
 }
+
+.group-1 {
+  color: #5E6150;
+}
+
+.group-2 {
+  color: #49A377;
+}
+
+.group-3 {
+  color: #E07833;
+}
+
+.group-4 {
+  color: #F43D64;
+}
+
+.group-5 {
+  color: #3985C7;
+}
+
+.group-6 {
+  color: #00BCD4;
+}
+
+.group-7 {
+  color: purple;
+}
+
+.group-8 {
+  color: brown;
+}
+
+.group-9 {
+  color: indigo;
+}

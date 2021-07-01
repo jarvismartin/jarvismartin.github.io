@@ -1,7 +1,7 @@
 include karax / prelude
 
 type
-  Square = tuple[row: int, col: int, black: bool, queen: bool, x: bool]
+  Square = tuple[row: int, col: int, black: bool, queen: bool, x: bool, group: int]
   Board = seq[Square]
   Pair = tuple[row: int, col: int]
   Solution = tuple[board: Board, valid: bool]
@@ -25,7 +25,7 @@ proc buildBoard(): Board =
       else:
         blackVal = false
 
-      let newTuple: Square = (row: row + 1, col: col + 1, black: blackVal, queen: false, x: false)
+      let newTuple: Square = (row: row + 1, col: col + 1, black: blackVal, queen: false, x: false, group: 0)
       ## echo newTuple
 
       board.add(newTuple)
@@ -33,12 +33,13 @@ proc buildBoard(): Board =
 
   return board
 
-proc addQueen(boardIndex: int): Pair =
+proc addQueen(boardIndex: int, group: int): Pair =
   ## Put a queen in the first available square.
   for i, s in solutions[boardIndex].board:
     if s.x == false:
       solutions[boardIndex].board[i].queen = true
       solutions[boardIndex].board[i].x = true
+      solutions[boardIndex].board[i].group = group
 
       return (row: s.row, col: s.col)
 
@@ -110,6 +111,7 @@ proc findSolutions(n: int) =
 
     while tries <= board.len - 1:
       echo "while tries ", tries
+      echo "queens: ", queens
 
       var
         queenAdded = (row: 0, col: 0)
@@ -127,16 +129,15 @@ proc findSolutions(n: int) =
         ## Don't check if we already know it can't be a queen
         if square.x == false:
           solutions[index].board[si].x = cannotBeQueen(si + 1, square, qLoc, diagonals)
+          solutions[index].board[si].group = queens
 
-      ## Add another queen
-      queenAdded = addQueen(index)
-      echo "queenAdded: ", queenAdded
+      ## Try to add another queen
+      queenAdded = addQueen(index, queens + 1)
       if queenAdded.row == 0:
         break
 
       if queenAdded.row != 0:
         queens += 1
-        echo "queens: ", queens
         qLoc = queenAdded
 
         if queens == nValue:
@@ -144,6 +145,7 @@ proc findSolutions(n: int) =
 
       ## Avoid infinite loop
       tries += 1
+
 
 ## Function to handle adding a board square to the DOM
 ## Uses solutions->board->square data to determine presentation
@@ -155,7 +157,7 @@ proc squareDiv(s: Square): VNode =
   if s.x:
     class.add(" x")
 
-  ## echo "class: ", class
+  class.add(" group-" & $s.group)
 
   result = buildHtml(tdiv):
     if s.queen:
