@@ -8,6 +8,7 @@ type
 
 var
   nValue: int = 0
+  validSolutions: int = 0
   solutions: seq[Solution] = @[]
 
 proc buildBoard(): Board =
@@ -84,6 +85,7 @@ proc findSolutions(n: int) =
 
   ## Clear old solutions
   solutions = @[]
+  validSolutions = 0
 
   for n in 1 .. nValue:
     ## Build a board
@@ -96,6 +98,7 @@ proc findSolutions(n: int) =
     var validity = false
     if nValue == 1:
       validity = true
+      validSolutions += 1
 
     ## Add board to solutions
     let newSoln = (board: board, valid: validity)
@@ -148,6 +151,7 @@ proc findSolutions(n: int) =
 
         if queens == nValue:
           solutions[index].valid = true
+          validSolutions += 1
 
       ## Avoid infinite loop
       tries += 1
@@ -204,6 +208,16 @@ proc createDom(): VNode =
                     option():text"Choose One"
                     for n in 1 .. 9:
                       option():text $n
+
+            tdiv(class="level-right is-size-3"):
+              if nValue > 0:
+                h3(class="level-item"):
+                  span():text $validSolutions
+                h5(class="level-item"):
+                  span():text"Valid Solution"
+                  if validSolutions != 1:
+                    span():text"s"
+
 
         section(class="section boards"):
             if nValue > 0:
