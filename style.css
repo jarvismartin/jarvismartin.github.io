@@ -37,6 +37,10 @@
   /* opacity: 0.5; */
 }
 
+.x .fas.fa-times {
+    font-size: 25px;
+}
+
 img[src="./img/x.svg"],
 .board-icon {
   height: 50px;
