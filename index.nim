@@ -4,12 +4,13 @@ type
   Square = tuple[row: int, col: int, black: bool, queen: bool, x: bool, group: int]
   Board = seq[Square]
   Pair = tuple[row: int, col: int]
-  Solution = tuple[board: Board, valid: bool]
+  Solution = tuple[board: Board, valid: bool, queens: seq[int], openSquares: seq[int]]
 
 var
   nValue: int = 0
   validSolutions: int = 0
   solutions: seq[Solution] = @[]
+  potentials: seq[Solution] = @[]
 
 proc buildBoard(): Board =
   var board: Board = @[]
@@ -99,152 +100,8 @@ proc findSolutions(n: int) =
   solutions = @[]
   validSolutions = 0
 
-  ## for n in 1 .. nValue:
-  ##   ## Build a board
-  ##   var board = buildBoard();
-
-  ##   ## Assign a queen to one of the top row spaces
-  ##   board[n - 1].queen = true
-
-  ##   ## Handle n is 1
-  ##   var validity = false
-  ##   if nValue == 1:
-  ##     validity = true
-  ##     validSolutions += 1
-
-  ##   ## Add board to solutions
-  ##   let newSoln = (board: board, valid: validity)
-
-  ##   solutions.add(newSoln)
-  ##   ## echo "solutions: ", $solutions
-
-  ## ## Go through each possible solution
-  ## for index, solution in solutions:
-  ##   var board = solutions[index].board
-  ##   #[
-  ##     Keep adding queens
-  ##     until solution is verified
-  ##     (n queens on board or fail)
-  ##   ]#
-  ##   var
-  ##     tries = 0
-  ##     queens = 1
-
-  ##   while tries <= board.len - 1:
-  ##     echo "while tries ", tries
-  ##     echo "queens: ", queens
-
-  ##     var
-  ##       queenAdded = (row: 0, col: 0)
-  ##       qLoc = (row: 0, col: 0)
-
-  ##     ## Get (or set) current queen location
-  ##     for sqI, sq in solutions[index].board:
-  ##       if sq.queen == true:
-  ##         qLoc = (row: sq.row, col: sq.col)
-
-  ##     ## Generate diagonals
-  ##     var diagonals = getDiagonals(board, qLoc)
-
-  ##     for si, square in solutions[index].board:
-  ##       ## Don't check if we already know it can't be a queen
-  ##       if square.x == false:
-  ##         solutions[index].board[si].x = cannotBeQueen(si + 1, square, qLoc, diagonals)
-  ##         solutions[index].board[si].group = queens
-
-  ##     ## Try to add another queen
-  ##     queenAdded = addQueen(index, queens + 1)
-  ##     if queenAdded.row == 0:
-  ##       break
-
-  ##     if queenAdded.row != 0:
-  ##       queens += 1
-  ##       qLoc = queenAdded
-
-  ##       if queens == nValue:
-  ##         solutions[index].valid = true
-  ##         validSolutions += 1
-
-  ##     ## Avoid infinite loop
-  ##     tries += 1
-
   var board = buildBoard()
   ## echo "BOARD: ", $board
-
-  #[
-  ## var
-  ##   currentRow = 1
-  ##   currentCol = 1
-
-  ## Try adding a queen in each square
-  for i in 0 .. board.len - 1:
-
-    ## Copy board and find solutions
-    ## for THIS board
-    var b = board
-
-    var
-      queens = 1
-      ## currentRow = 1
-      qLoc = (row: b[i].row, col: b[i].col)
-      validity = false
-
-    ## if i > (nValue * currentRow):
-    ##   currentRow += 1
-    ## echo "currentRow: ", currentRow
-
-    ## Add initial queen
-    if b[i].row == 1:
-      b[i].queen = true
-      b[i].x = true
-      b[i].group = 1
-    elif b[i].row != nValue and b[i].col != 1 and b[i].col != nValue:
-      b[i].queen = true
-      b[i].x = true
-      b[i].group = 1
-    else:
-      continue
-
-    ## Keep adding queens until solution is validated
-    var keepGoing = true
-    var i = 1
-
-    while keepGoing and i <= nValue * 2:
-      echo "while i: ", i
-      ## x every square this queen can attack
-
-      echo "x squares"
-      for si, square in b:
-        ## Don't check if we already know it can't be a queen
-        if square.x == false:
-          b[si].x = cannotBeQueen(square, qLoc)
-          b[si].group = queens
-
-      echo "try to add queen"
-      ## Try to add another queen
-      for i, square in b:
-        if square.x == false:
-          b[i].queen = true
-          b[i].x = true
-          queens += 1
-          b[i].group = queens
-
-          qLoc = (row: b[i].row, col: b[i].col)
-
-          ## Catch successes
-          if queens == nValue:
-            validity = true
-            ## keepGoing = false
-
-          echo "BREAK!!!"
-          break
-
-        if i == b.len:
-          echo "All Spaces Taken!!!"
-
-      ## increment counter
-      i += 1
-  ]#
 
   ## Add a queen to each square in row 1
   for i in 0 .. nValue - 1:
@@ -258,6 +115,10 @@ proc findSolutions(n: int) =
     b[i].x = true
     b[i].group = 1
 
+    var queens = @[i]
+
+    ## echo "INITIAL QUEEN IN SQUARE: ", i
+
     var availableSquares: seq[int] = @[]
 
     ## x every square this queen can attack
@@ -270,94 +131,140 @@ proc findSolutions(n: int) =
       if not b[si].x:
         availableSquares.add(si)
 
-    echo "AVAILABLE SQUARES: ", $availableSquares
+    ## echo "AVAILABLE SQUARES: ", $availableSquares
 
-
-    ## for avSqIndex, n in availableSquares:
-    echo "TESTING AVAILABLE SQUARE: ", n
-    ## Capture current board
-    var thisBoard = b
-    ## echo "THIS BOARD: ", thisBoard
-
-    ## Hold the currently available squares for this board
-    var avSq = availableSquares
-
-    ## Count the number of queens on this board
-    var queens = 1
-    ## Track this board's validity as a solution
     var validity = false
+    if nValue == 1:
+      validity = true
 
-    var keepGoing = true
-    var counter = b.len
-    while keepGoing and counter > 0:
+    ## Add this to this list of potential solutions
+    let newSoln = (board: b, valid: validity, queens: queens, openSquares: availableSquares)
+    potentials.add(newSoln)
+
+    for i, s in potentials:
+
+      for i in 0 .. nValue - 1:
+        echo "BEFORE WHILE i: ", i
+
+        ## Use counter to iterate over
+        ## All available squares
+        var counter = 0
+
+        var newSolution = s
+        newSolution.openSquares = newSolution.openSquares[i .. newSolution.openSquares.len - 1]
+
+        while counter <= s.openSquares.len:
+
+          echo "\tqueens: ", newSolution.queens
+          echo "\topenSquares: ", newSolution.openSquares
+
+          echo "\tADD QUEEN to ", newSolution.openSquares[0]
+          var update = addQueen(newSolution.board, newSolution.openSquares[0], newSolution.queens.len + 1)
+          ## echo "\tUPDATE:\n", update
+
+          ## Update board
+          newSolution.board = update.board
+          ## Update queens
+          newSolution.queens.add(newSolution.openSquares[0])
+          ## Update openSquares
+          newSolution.openSquares = update.availableSquares
+
+          if newSolution.openSquares.len == 0:
+
+            if newSolution.queens.len == nValue:
+              newSolution.valid = true
+              validSolutions += 1
+
+            ## Update solutions
+            echo "ADDING SOLUTION"
+            solutions.add(newSolution)
+
+            counter += 1
+
+            ## Go to the next available square
+            ## newSolution = s
+
+
+            echo "BREAK"
+            break
+
+
+          ## newSolution.board = update.board
+          ## newSolution.queens.add(s.openSquares[0])
+          ## echo "NEW SOLUTION:\n", newSolution
+
+          ## if update.openSquares.len == 0:
+          ## if update.availableSquares.len == 0:
+          ##   echo "NO MORE SQUARES AVAILABLE"
+          ##   break
+
+
+
+#[
+    for avSqIndex, n in availableSquares:
+      ## Capture current board
+      var thisBoard = b
+      ## echo "THIS BOARD: ", thisBoard
+
+      ## Hold the currently available squares for this board
+      var avSq = availableSquares
+
+      ## Count the number of queens on this board
+      var queens = 1
+      ## Track this board's validity as a solution
+      var validity = false
+
+      echo "\tADD QUEEN TO SQUARE ", avSq[avSqIndex]
+      var queen2AS = addQueen(thisBoard, avSq[avSqIndex], queens + 1)
+      ## echo "\tADDED QUEEN: ", queen2AS
+
+      ## Update this board
+      thisBoard = queen2AS.board
+
+      ## Update avSq
+      avSq = queen2AS.availableSquares
+
+
+
+      ## WHILE LOOP
+      var keepGoing = true
+      var counter = 0
 
       ## Capture squares available in this while loop
       var av = avSq
-      echo "WHILE available squares: ", av
 
-      var addedQueen = addQueen(thisBoard, avSq[0], queens + 1)
-      ## echo "ADDED QUEEN: ", addedQueen
+      while keepGoing and counter < 10:
 
-      if addedQueen.availableSquares.len == 0:
-        keepGoing = false
-        echo "STOP!!!"
+        echo "\t\tWHILE available squares: ", av
 
-      queens += 1
-      if queens == nValue:
-        validity = true
-        echo "ADD SOLUTION"
-#[
-        ## FOR NOW -- see what it looks like
-        let newSoln = (board: thisBoard, valid: validity)
-        solutions.add(newSoln)
-        ## echo "solutions: ", $solutions
+        echo "\t\tADD QUEEN TO SQUARE ", av[0]
+        var addedQueen = addQueen(thisBoard, av[0], queens + 1)
+        ## echo "ADDED QUEEN: ", addedQueen
+
+        if addedQueen.availableSquares.len == 0:
+          keepGoing = false
+          av = avSq
+          echo "\t\tSTOP!!!"
+
+        queens += 1
+        if queens == nValue:
+          validity = true
+          echo "\t\tVALID SOLUTION"
+
+        ## Update this board
+        thisBoard = addedQueen.board
+
+        ## Update available squares
+        av = addedQueen.availableSquares
+
+        counter += 1
+
+      ## FOR NOW -- see what it looks like
+      echo "ADDING SOLUTION"
+      let newSoln = (board: thisBoard, valid: validity)
+      solutions.add(newSoln)
+      ## echo "solutions: ", $solutions
 ]#
-      ## Update this board
-      thisBoard = addedQueen.board
-
-      ## Update available squares
-      avSq = addedQueen.availableSquares
-
-      counter -= 1
-
-    ## FOR NOW -- see what it looks like
-    let newSoln = (board: thisBoard, valid: validity)
-    solutions.add(newSoln)
-    ## echo "solutions: ", $solutions
-
-
-      #[
-      var keepGoing = true
-      var i = 1
-      while keepGoing and i <= 2:
-
-        ## Capture current board
-        var thisBoard = b
-        ## and this board's available squares
-        var tbas = availableSquares
-
-        var validity = false
-        var queens = 1
-        var queenI = 1
-        var qLoc = (row: 1, col: i+1)
-
-        for i in 1 .. tbas.len - 1:
-          if not thisBoard[i].x:
-            echo "ADD QUEEN AT ", thisBoard[i]
-
-            ## Start a new queen group color
-            queens += 1
-
-            thisBoard[i].queen = true
-            thisBoard[i].x = true
-            thisBoard[i].group = queens
-
-            break
-
-        ## x new queen's attackable squares
-
-          i += 1
-        ]#
 
 
 ## Function to handle adding a board square to the DOM
